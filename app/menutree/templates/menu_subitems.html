@@ -1,0 +1,8 @@
+{% for item in menu_items %}
+    {% if item.root_item.id == root_id %}
+        <div class="item">
+            <a href="{{ item.get_absolute_url }}">{{ item.id }} {{ item.title }}</a>
+            {% include 'menu_subitems.html' with menu_items=menu_items root_id=item.id %}
+        </div>
+    {% endif %}
+{% endfor %}

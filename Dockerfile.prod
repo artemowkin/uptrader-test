@@ -1,0 +1,8 @@
+
+FROM python:3.10
+WORKDIR /code/
+RUN pip install -U pdm
+COPY pdm.lock pyproject.toml /code/
+RUN pdm install
+COPY app /code/app
+RUN pdm run python app/manage.py collectstatic --noinput

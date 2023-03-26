@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:latest
+    env_file:
+      - .env.local
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  web:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    env_file:
+      - .env.local
+    command: sh -c "cd app; pdm run python manage.py migrate; pdm run python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app/:/code/app/
+
+volumes:
+  postgres_data:
