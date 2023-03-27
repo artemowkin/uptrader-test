@@ -34,6 +34,8 @@ DJANGO_DB_USER="django"
 DJANGO_DB_PASSWORD="django"
 DJANGO_DB_HOST="db"
 DJANGO_DB_PORT=5432
+
+DJANGO_SECRET_KEY="<your_secret_key>"
 ```
 
 После этого выполнить команду:
